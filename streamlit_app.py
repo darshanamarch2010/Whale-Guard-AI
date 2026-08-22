@@ -15,11 +15,12 @@ def predict(model, image: Image.Image):
     label = "🐋 Whale detected" if score > 0.5 else "🚢 No whale (ship/other)"
     confidence = score if score > 0.5 else 1 - score
     return label, confidence
-    st.set_page_config(page_title="Whale Detector", page_icon="🐋")
+st.set_page_config(page_title="Whale Detector", page_icon="🐋")
 st.title("🐋 Whale Detector")
 st.write(
     "Upload a satellite image chip and this model will predict whether "
-    "it contains a whale or not.")
+    "it contains a whale or not."
+)
 model = load_model()
 uploaded_file = st.file_uploader(
     "Upload a satellite image", type=["jpg", "jpeg", "png"]
@@ -29,7 +30,6 @@ if uploaded_file is not None:
     st.image(image, caption="Uploaded image", use_column_width=True)
  with st.spinner("Predicting..."):
         label, confidence = predict(model, image)
-
     st.subheader(label)
     st.write(f"Confidence: {confidence:.1%}")
 else:
