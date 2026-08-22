@@ -28,7 +28,7 @@ uploaded_file = st.file_uploader(
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption="Uploaded image", use_column_width=True)
- with st.spinner("Predicting..."):
+ with st.spinner("Predicting...")
         label, confidence = predict(model, image)
     st.subheader(label)
     st.write(f"Confidence: {confidence:.1%}")
